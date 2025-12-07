@@ -9,6 +9,8 @@ import localFont from 'next/font/local';
 import { headers } from 'next/headers';
 import Script from 'next/script';
 
+export const dynamic = 'force-dynamic';
+
 const seasonFont = localFont({
   src: './ssn.woff2',
   display: 'swap',
