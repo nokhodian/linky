@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { auth } from '@/app/lib/auth';
 import { Button } from '@trylinky/ui';
 import Link from 'next/link';
