@@ -9,10 +9,6 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-  basePath: '/i',
-  experimental: {
-    manualClientBasePath: true,
-  },
   transpilePackages: ['@trylinky/ui', '@trylinky/common'],
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   sassOptions: {

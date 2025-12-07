@@ -6,15 +6,15 @@ const nextConfig: NextConfig = {
   rewrites: async () => [
     {
       source: '/',
-      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/i`,
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/`,
     },
     {
       source: '/sitemap.xml',
-      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/i/sitemap.xml`,
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/sitemap.xml`,
     },
     {
       source: '/i/:path*',
-      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/i/:path*`,
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/:path*`,
     },
   ],
   redirects: async () => [
@@ -24,13 +24,13 @@ const nextConfig: NextConfig = {
       permanent: true,
     },
     {
-      source: '/i/learn/what-is-glow',
-      destination: '/i/learn/what-is-linky',
+      source: '/learn/what-is-glow',
+      destination: '/learn/what-is-linky',
       permanent: true,
     },
     {
-      source: '/i/learn/is-glow-free',
-      destination: '/i/learn/is-linky-free',
+      source: '/learn/is-glow-free',
+      destination: '/learn/is-linky-free',
       permanent: true,
     },
   ],
