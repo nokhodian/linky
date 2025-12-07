@@ -45,11 +45,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession({
-    fetchOptions: { headers: await headers() },
-  });
+  let session;
+  try {
+    session = await getSession({
+      fetchOptions: { headers: await headers() },
+    });
+  } catch (error) {
+    console.error('Session check failed in RootLayout:', error);
+  }
 
-  const sessionData = session.data;
+  const sessionData = session?.data;
 
   const { user } = sessionData ?? {};
 

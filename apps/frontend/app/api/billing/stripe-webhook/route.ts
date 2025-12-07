@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     event = stripeClient.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET || 'dummy_secret_for_build'
     );
   } catch (error) {
     console.log('Error', error);

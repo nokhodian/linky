@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "pnpm run copy-tinybird-tracker && dotenvx run -f ../../.env.local -- next dev",
     "copy-tinybird-tracker": "cp ../../packages/tinybird/dist/tracker.js  public/assets",
+    "build": "next build",
     "build:frontend": "next build",
     "start:frontend": "next start",
     "lint": "next lint",
