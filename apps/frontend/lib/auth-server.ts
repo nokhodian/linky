@@ -24,18 +24,29 @@ export const auth = betterAuth({
     provider: 'postgresql',
   }),
   socialProviders: {
-    google: {
-      clientId: process.env.AUTH_GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET as string,
-    },
-    twitter: {
-      clientId: process.env.AUTH_TWITTER_CLIENT_ID as string,
-      clientSecret: process.env.AUTH_TWITTER_CLIENT_SECRET as string,
-    },
-    tiktok: {
-      clientKey: process.env.AUTH_TIKTOK_CLIENT_KEY as string,
-      clientSecret: process.env.AUTH_TIKTOK_CLIENT_SECRET as string,
-    },
+    google:
+      process.env.AUTH_GOOGLE_CLIENT_ID && process.env.AUTH_GOOGLE_CLIENT_SECRET
+        ? {
+            clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
+            clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET,
+          }
+        : undefined,
+    twitter:
+      process.env.AUTH_TWITTER_CLIENT_ID &&
+      process.env.AUTH_TWITTER_CLIENT_SECRET
+        ? {
+            clientId: process.env.AUTH_TWITTER_CLIENT_ID,
+            clientSecret: process.env.AUTH_TWITTER_CLIENT_SECRET,
+          }
+        : undefined,
+    tiktok:
+      process.env.AUTH_TIKTOK_CLIENT_KEY &&
+      process.env.AUTH_TIKTOK_CLIENT_SECRET
+        ? {
+            clientKey: process.env.AUTH_TIKTOK_CLIENT_KEY,
+            clientSecret: process.env.AUTH_TIKTOK_CLIENT_SECRET,
+          }
+        : undefined,
   },
   advanced: {
     database: {
