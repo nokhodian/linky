@@ -143,8 +143,8 @@
       "env": ["DATABASE_URL", "DIRECT_URL"]
     },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "dependsOn": ["^build", "^prisma:generate"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     }
   }
 }
