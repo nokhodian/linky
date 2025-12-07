@@ -13,16 +13,39 @@ const nextConfig: NextConfig = {
       destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/sitemap.xml`,
     },
     {
+      source: '/pricing',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/pricing`,
+    },
+    {
+      source: '/explore',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/explore`,
+    },
+    {
+      source: '/learn/:path*',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/learn/:path*`,
+    },
+    {
+      source: '/blog/:path*',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/blog/:path*`,
+    },
+    {
+      source: '/images/:path*',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/images/:path*`,
+    },
+    {
+      source: '/privacy',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/privacy`,
+    },
+    {
+      source: '/terms',
+      destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/terms`,
+    },
+    {
       source: '/i/:path*',
       destination: `${process.env.NEXT_PUBLIC_MARKETING_URL}/:path*`,
     },
   ],
   redirects: async () => [
-    {
-      source: '/pricing',
-      destination: '/i/pricing',
-      permanent: true,
-    },
     {
       source: '/learn/what-is-glow',
       destination: '/learn/what-is-linky',

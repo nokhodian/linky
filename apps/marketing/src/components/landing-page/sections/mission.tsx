@@ -13,7 +13,7 @@ export const MissionSection = () => {
           <div className="w-full md:w-1/2 relative">
              <div className="absolute inset-0 bg-gradient-to-tr from-orange-200 to-purple-200 rounded-[2rem] transform rotate-3 scale-105 opacity-50 blur-sm" />
             <Image
-              src="/i/images/watercolor-playing.png"
+              src="/images/watercolor-playing.png"
               alt="Kinder spielen"
               width={600}
               height={600}

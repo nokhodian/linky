@@ -48,7 +48,7 @@ export default function MarketingNavigation({ children }: Props) {
             </div>
             <div className="flex flex-1 items-center justify-end gap-x-1">
               <Button asChild variant="ghost" className="hidden sm:flex">
-                <Link href="/i/pricing">Preise</Link>
+                <Link href="/pricing">Preise</Link>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -59,7 +59,7 @@ export default function MarketingNavigation({ children }: Props) {
                 <DropdownMenuContent align="start" className="w-96 rounded-2xl">
                   <DropdownMenuItem asChild className="items-start rounded-2xl">
                     <Link
-                      href="/i/explore"
+                      href="/explore"
                       className="grid grid-cols-[40px_1fr] items-start"
                     >
                       <PhotoIcon className="w-5 h-5 mt-1" />
@@ -125,14 +125,14 @@ export default function MarketingNavigation({ children }: Props) {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="py-6">
                   <Link
-                    href="/i/pricing"
+                    href="/pricing"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Preise
                   </Link>
                   <Link
-                    href="/i/explore"
+                    href="/explore"
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
