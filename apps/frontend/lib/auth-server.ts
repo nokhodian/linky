@@ -19,6 +19,7 @@ import { admin, magicLink, organization } from 'better-auth/plugins';
 
 export const auth = betterAuth({
   baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  secret: process.env.BETTER_AUTH_SECRET || 'fallback_secret_for_build',
   trustedOrigins,
   database: prismaAdapter(prisma as unknown as PrismaClient, {
     provider: 'postgresql',
