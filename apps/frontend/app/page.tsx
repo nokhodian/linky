@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage';
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
+  console.log('Root page hit');
   let session;
   
   try {

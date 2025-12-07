@@ -18,7 +18,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin, magicLink, organization } from 'better-auth/plugins';
 
 export const auth = betterAuth({
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://lin.ky',
   secret: process.env.BETTER_AUTH_SECRET || 'fallback_secret_for_build',
   trustedOrigins,
   database: prismaAdapter(prisma as unknown as PrismaClient, {

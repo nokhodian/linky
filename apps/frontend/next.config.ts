@@ -4,6 +4,7 @@ import type { NextConfig } from 'next';
 const MARKETING_URL = process.env.NEXT_PUBLIC_MARKETING_URL || 'https://lin.ky';
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   transpilePackages: ['@trylinky/ui', '@trylinky/common'],
   rewrites: async () => [
     {
