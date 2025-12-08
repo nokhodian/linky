@@ -2,7 +2,7 @@ import { config } from '@/lib/features';
 import { Block, WebClient } from '@slack/web-api';
 import { User } from 'better-auth';
 
-const slackClient = new WebClient(process.env.SLACK_TOKEN);
+const slackClient = new WebClient(process.env.SLACK_TOKEN || 'fallback_token');
 
 const slackChannels = {
   default: 'C08GWNF2MHV',

@@ -2,7 +2,10 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@trylinky/prisma';
 import 'server-only';
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg({
+  connectionString:
+    process.env.DATABASE_URL || 'postgres://fallback:5432@localhost:5432/fallback',
+});
 
 const prismaClientSingleton = () => {
   return new PrismaClient({ adapter }).$extends({
