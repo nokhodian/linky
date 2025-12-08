@@ -4,6 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
+    "build": "prisma generate --no-hints",
     "prisma:generate": "prisma generate --no-hints",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:seed": "prisma db seed"

@@ -11,7 +11,7 @@ import {
   getPageSettings,
   getPageTheme,
 } from '@/app/lib/actions/page-actions';
-import { getSession } from '@/app/lib/auth';
+import { auth } from '@/lib/auth-server';
 import {
   PremiumOnboardingDialog,
   TeamOnboardingDialog,
@@ -33,8 +33,8 @@ export default async function PageLayout(props: {
   const params = await props.params;
   const { children } = props;
 
-  const session = await getSession({
-    fetchOptions: { headers: await headers() },
+  const session = await auth.api.getSession({
+    headers: await headers(),
   });
 
   // Combine initial page fetch with settings to reduce queries
@@ -46,13 +46,13 @@ export default async function PageLayout(props: {
 
   if (
     !page.publishedAt &&
-    session?.data?.session.activeOrganizationId !== page?.organizationId
+    session?.session.activeOrganizationId !== page?.organizationId
   ) {
     return notFound();
   }
 
   // Batch fetch data for logged in users
-  const [integrations, enabledBlocks, pageSettings] = session?.data?.user
+  const [integrations, enabledBlocks, pageSettings] = session?.user
     ? await Promise.all([
         getTeamIntegrations(),
         getEnabledBlocks(),
@@ -73,7 +73,7 @@ export default async function PageLayout(props: {
   };
 
   if (
-    pageData?.organizationId === session?.data?.session.activeOrganizationId
+    pageData?.organizationId === session?.session.activeOrganizationId
   ) {
     initialData['/integrations/me'] = integrations;
     initialData[`/blocks/enabled-blocks`] = enabledBlocks;
@@ -89,7 +89,7 @@ export default async function PageLayout(props: {
   }
 
   const currentUserIsOwner =
-    pageData?.organizationId === session?.data?.session.activeOrganizationId;
+    pageData?.organizationId === session?.session.activeOrganizationId;
 
   return (
     <LinkyProviders
@@ -143,7 +143,7 @@ export default async function PageLayout(props: {
 
       <RenderPageTheme pageId={page.id} />
 
-      {session?.data?.user && (
+      {session?.user && (
         <>
           <PremiumOnboardingDialog />
           <TeamOnboardingDialog />

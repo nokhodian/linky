@@ -23,7 +23,9 @@ export const auth = betterAuth({
     (process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : 'https://lin.ky'),
-  secret: process.env.BETTER_AUTH_SECRET || 'fallback_secret_for_build',
+  secret:
+    process.env.BETTER_AUTH_SECRET ||
+    'fallback_secret_for_build_should_be_long_enough_32chars',
   trustedOrigins,
   database: prismaAdapter(prisma as unknown as PrismaClient, {
     provider: 'postgresql',

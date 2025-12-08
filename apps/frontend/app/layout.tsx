@@ -1,6 +1,6 @@
 import './globals.css';
 import './react-grid-layout.scss';
-import { getSession } from '@/app/lib/auth';
+import { auth } from '@/lib/auth-server';
 import { PostHogIdentify, PostHogProvider } from '@/app/posthog-provider';
 import { Toaster } from '@trylinky/ui';
 import { Analytics } from '@vercel/analytics/react';
@@ -49,14 +49,14 @@ export default async function RootLayout({
 }) {
   let session;
   try {
-    session = await getSession({
-      fetchOptions: { headers: await headers() },
+    session = await auth.api.getSession({
+      headers: await headers(),
     });
   } catch (error) {
     console.error('Session check failed in RootLayout:', error);
   }
 
-  const sessionData = session?.data;
+  const sessionData = session;
 
   const { user } = sessionData ?? {};
 
