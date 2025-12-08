@@ -18,7 +18,11 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin, magicLink, organization } from 'better-auth/plugins';
 
 export const auth = betterAuth({
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://lin.ky',
+  baseUrl:
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'https://lin.ky'),
   secret: process.env.BETTER_AUTH_SECRET || 'fallback_secret_for_build',
   trustedOrigins,
   database: prismaAdapter(prisma as unknown as PrismaClient, {
@@ -54,7 +58,7 @@ export const auth = betterAuth({
       generateId: false, // Let the database generate UUIDs
     },
     crossSubDomainCookies:
-      process.env.NODE_ENV === 'production'
+      process.env.NODE_ENV === 'production' && !process.env.VERCEL_URL
         ? {
             enabled: true,
             domain: '.lin.ky',

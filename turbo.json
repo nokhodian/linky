@@ -1,150 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [".env.*local"],
-  "tasks": {
+  "globalEnv": [
+    "ENCRYPTION_KEY",
+    "AUTH_SECRET",
+    "DATABASE_URL",
+    "DIRECT_URL",
+    "BETTER_AUTH_SECRET",
+    "NEXT_PUBLIC_APP_URL",
+    "NEXT_PUBLIC_ROOT_DOMAIN",
+    "NEXT_PUBLIC_MARKETING_URL",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "STRIPE_API_SECRET_KEY",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
+  ],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
     "dev": {
-      "dependsOn": ["^prisma:generate"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "cache": false
-    },
-    "build:tracker": {
-      "dependsOn": [],
-      "outputs": ["packages/tinybird/dist/tracker.js"]
-    },
-    "copy-tinybird-tracker": {
-      "dependsOn": ["^build:tracker"],
-      "outputs": ["apps/frontend/public/assets/tinybird/tracker.js"]
-    },
-    "build:frontend": {
-      "dependsOn": ["^prisma:generate", "^copy-tinybird-tracker"],
-      "env": [
-        "DATABASE_URL",
-        "DIRECT_URL",
-
-        "NEXT_PUBLIC_SENTRY_DSN",
-        "SENTRY_AUTH_TOKEN",
-
-        "ENCRYPTION_KEY",
-
-        "GITHUB_AUTH_TOKEN",
-
-        "INTERNAL_API_KEY",
-
-        "NEXT_PUBLIC_APP_ENV",
-        "NEXT_PUBLIC_BASE_URL",
-        "NEXT_PUBLIC_ROOT_DOMAIN",
-        "NEXT_PUBLIC_APP_URL",
-        "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY",
-        "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN",
-        "NEXT_PUBLIC_TINYBIRD_TRACKER_TOKEN",
-        "NEXT_PUBLIC_POSTHOG_KEY",
-        "NEXT_PUBLIC_MARKETING_URL",
-
-        "SPOTIFY_CLIENT_ID",
-        "SPOTIFY_CLIENT_SECRET",
-
-        "VERCEL_UNDICI",
-
-        "API_BASE_URL",
-        "APP_ENV",
-
-        "AUTH_GOOGLE_CLIENT_ID",
-        "AUTH_GOOGLE_CLIENT_SECRET",
-        "AUTH_SECRET",
-        "AUTH_TIKTOK_CLIENT_ID",
-        "AUTH_TIKTOK_CLIENT_KEY",
-        "AUTH_TIKTOK_CLIENT_SECRET",
-        "AUTH_TRUST_HOST",
-        "AUTH_TWITTER_CLIENT_ID",
-        "AUTH_TWITTER_CLIENT_SECRET",
-
-        "AWS_ACCESS_KEY_ID",
-        "AWS_REGION",
-        "AWS_SECRET_ACCESS_KEY",
-
-        "BETTER_AUTH_URL",
-
-        "ENCRYPTION_KEY",
-
-        "INSTAGRAM_CALLBACK_URL",
-        "INSTAGRAM_CLIENT_ID",
-        "INSTAGRAM_CLIENT_SECRET",
-        "INSTAGRAM_LEGACY_CALLBACK_URL",
-        "INSTAGRAM_LEGACY_CLIENT_ID",
-        "INSTAGRAM_LEGACY_CLIENT_SECRET",
-
-        "INTERNAL_API_KEY",
-
-        "NODE_ENV",
-        "PORT",
-
-        "POSTHOG_API_KEY",
-
-        "REACTIONS_TABLE_NAME",
-
-        "RESEND_API_KEY",
-        "RESEND_AUDIENCE_ID",
-
-        "SCREENSHOT_API_KEY",
-
-        "SENTRY_AUTH_TOKEN",
-        "SENTRY_DSN",
-
-        "SLACK_TOKEN",
-
-        "SPOTIFY_CLIENT_ID",
-        "SPOTIFY_CLIENT_SECRET",
-        "SPOTIFY_REDIRECT_URL",
-
-        "STRIPE_API_SECRET_KEY",
-        "STRIPE_WEBHOOK_SECRET",
-
-        "THREADS_CALLBACK_URL",
-        "THREADS_CLIENT_ID",
-        "THREADS_CLIENT_SECRET",
-
-        "TIKTOK_CALLBACK_URL",
-        "TIKTOK_CLIENT_KEY",
-        "TIKTOK_CLIENT_SECRET",
-
-        "TINYBIRD_API_KEY"
-      ],
-      "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "build:marketing": {
-      "dependsOn": ["^prisma:generate"],
-      "env": [
-        "NEXT_PUBLIC_APP_URL",
-        "NEXT_PUBLIC_BASE_URL",
-        "HYGRAPH_TOKEN",
-        "HYGRAPH_ENDPOINT"
-      ],
-      "inputs": ["$TURBO_DEFAULT$", ".env"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
-    },
-    "start:frontend": {
-      "dependsOn": ["build:frontend"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
-    },
-    "start:marketing": {
-      "dependsOn": ["build:marketing"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
-    },
-    "prisma:generate": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"]
-    },
-    "prisma:migrate": {
-      "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"]
-    },
-    "build": {
-      "dependsOn": ["^build", "^prisma:generate"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "persistent": true
     }
   }
 }
