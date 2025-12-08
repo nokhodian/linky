@@ -14,7 +14,7 @@
     "STRIPE_API_SECRET_KEY",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
   ],
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
